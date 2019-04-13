@@ -37,8 +37,8 @@ Fun Bus wants you to make their site more interactive. They are relying on you t
 	* [X] `mouseover`
 	* [X] `keydown`
 	* [ ] `wheel`
-	* [ ] `drag / drop`
-	* [ ] `load`
+	* [X] `drag / drop`
+	* [X] `load`
 	* [ ] `focus`
 	* [X] `resize`
 	* [X] `scroll`
@@ -58,3 +58,27 @@ Using the 10 unique events, find ways to update the DOM in creative ways. For ex
 ## Stretch assignment
 
 * [ ] Take a look at the [stretch assignment](stretch-assignment) and follow the instructions in the read me file.
+
+
+
+# Reflections, Standup Report Responses II, April 13, 2019:
+
+## Pull Request Link
+https://github.com/arturolei/DOM-II/pull/1
+
+## What did you work on today and yesterday?
+I worked on reviewing the DOM-II related training material and finishing the MVP for the DOM-II project. 
+
+## What Will You Work On Tomorrow or Need to Get Done
+I need to review the TK materials for next week and maybe tackle the stretch project for DOM-I and DOM-II to make sure I am comfortable with the material.
+
+## Blockers/Breakthroughs
+
+### Blockers 
+I ran out of ideas. The 10 unique event listeners criterion seems a bit arbitrary and not that productive. This assignment's instructions and setup were kind of unclear. 
+
+Is there a way to add multiple event listeners to an element at once rather than serially? 
+
+### Breakthroughs:
+I feel comfortable with event listeners as a concept. I just need practice with implementation. 
+
