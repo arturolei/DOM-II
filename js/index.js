@@ -31,12 +31,13 @@ navButtons.forEach(navLink => {
     navLink.addEventListener("mouseenter", (event)=>{
         event.target.style.fontSize = "2.0rem";
         event.target.style.color = "pink";
+        //make it bolder when you hover over it
+        event.target.style.fontWeight= "900";
         
     });
     navLink.addEventListener("mouseleave", event => {
         event.target.style.color = "#212529";
         event.target.style.fontSize = "1.6rem";
-        event.target.style.fontWeight= "bolder";
         
     });
     //Stop the navigation from items from refreshing the page by using `preventDefault()` when an a tag in the nav is clicked.
@@ -52,6 +53,7 @@ navButtons.forEach(navLink => {
 const logoHeading = document.querySelector(".logo-heading");
 
 logoHeading.addEventListener('dblclick', event => {
+    event.stopPropagation();
     event.target.style.color = "pink";
     event.target.style.fontSize = "5.0rem";
 })
@@ -67,7 +69,10 @@ imagesContent.forEach((image) => {
         event.target.style.width = "60%";
     });
     //restore following double click to original size
-    image.addEventListener('dblclick', event => event.target.style.width = "100%");
+    image.addEventListener('dblclick', event => {
+        event.stopPropagation(); //will prevent stop clicking alert from starting
+        event.target.style.width = "100%";
+    });
 });
 
 //4. copy: trying to copy anything/add to clipboard will cause an alert telling you not to copy anything
@@ -82,10 +87,14 @@ const imagesAll = document.querySelectorAll('img');
 
 imagesAll.forEach (image => {
     image.addEventListener("mouseover", event =>{
-        console.log("Image flipping")
         event.target.style.transform = "scaleX(-1)";
         event.target.style.filter = "FlipH";
-    });         
+    });
+    //flips things back when you aren't hovering over it.
+    image.addEventListener("mouseleave", event=>{
+        event.target.style.transform = "scaleX(1)";
+        event.target.style.filter = "FlipH";
+    })         
 })
 
 //6. scrolling
@@ -94,27 +103,36 @@ window.addEventListener("scroll", event => console.log("SCROLLING"));
 //7. resize - "resize" really only works on the global level/window only according to MDN documentation (https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView/resize_event)
 window.addEventListener("resize", event => alert("Why are you resizing your browser window?"));
 
-//8. 
+//8. load
+window.addEventListener("load", event => alert("Page has loaded! Hurray!"));
 
+//9. paste
+ourHTML.addEventListener("paste", event => alert("What are you pasting? There's nowhere to paste anything!"));
 
-//9.
+//10. drag/drop
+const destinationBoatImg = document.querySelector(".content-destination img");
 
-
-//10.
-
-
-// Stop propagation, clicking on page by default launches an alert 
-const wholeHTML = document.querySelector('html');
-
-wholeHTML.addEventListener("click", event => {
-    alert("Stop clicking randomly on our page. Click only on the buttons or on links");
+destinationBoatImg.addEventListener("drag", event =>{
+    event.target.style.border = "3px solid pink";
 })
 
-//Now I need to prevent clicking on buttons on the bottom from setting off the above alert.
+destinationBoatImg.addEventListener("dragend", event => {
+    event.target.style.border = "5px solid green";
+})
+
+
+// Stop propagation test: double clicking on page by default launches an alert 
+const wholeHTML = document.querySelector('html');
+
+wholeHTML.addEventListener("dblclick", event => {
+    alert("Stop double-clicking randomly on our page. Click only on the buttons or on links");
+})
+
+//Now I need to prevent double-clicking on buttons on the bottom from setting off the above alert.
 const buttons = document.querySelectorAll('.btn');
 
 buttons.forEach(button => {
-    button.addEventListener('click', event => {
+    button.addEventListener('dblclick', event => {
         event.stopPropagation();
     });
 })
